@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>mood / words — 텍스트 감성 분석</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- 상단 헤더 영역 -->
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="brand-logo">mood / words</span>
+      <span class="header-tagline">AI Sentiment Analyzer</span>
+    </div>
+  </header>
+
+  <!-- 메인 컨텐츠 영역 -->
+  <main class="main-content">
+    <!-- 히어로(소개) 영역 -->
+    <section class="hero-section">
+      <h1 class="hero-title">
+        Discover the <em>emotional tone</em><br>hidden in your words.
+      </h1>
+      <p class="hero-desc">
+        문장이나 짧은 글을 입력하면 AI가 전반적인 어조를 분석하여 긍정, 부정, 중립으로 명확하게 전달합니다.
+      </p>
+
+      <!-- 감성 3원소를 상징하는 원형 그래픽 (장식용) -->
+      <div class="symbol-circles" aria-hidden="true">
+        <div class="circle circle-positive" title="긍정"></div>
+        <div class="circle circle-neutral" title="중립"></div>
+        <div class="circle circle-negative" title="부정"></div>
+      </div>
+    </section>
+
+    <!-- 감성 분석 입력 폼 영역 -->
+    <section class="form-section">
+      <form id="analysis-form" novalidate>
+        <div class="input-header">
+          <label for="text-input" class="input-label">분석할 텍스트 입력</label>
+          <div id="char-count" class="char-count" aria-live="polite">0 / 5,000</div>
+        </div>
+
+        <div class="textarea-wrapper">
+          <textarea
+            id="text-input"
+            name="text"
+            rows="6"
+            placeholder="여기에 문장이나 글을 입력하세요... (예: 오늘 진행한 프로젝트 발표가 기대 이상으로 잘 마무리되어 뿌듯했다.)"
+            maxlength="5000"
+            required
+          ></textarea>
+        </div>
+
+        <!-- 개인정보 입력 주의 안내 -->
+        <p class="privacy-notice">
+          ※ 분석을 위해 입력된 텍스트는 AI 분석 및 결과 저장을 위해 전송됩니다. 비밀번호, 주민번호 등 민감한 개인정보는 입력하지 마세요.
+        </p>
+
+        <!-- 입력 유효성 오류 메시지 표시 영역 -->
+        <div id="form-error" class="error-message" role="alert" hidden></div>
+
+        <!-- 제출 버튼 영역 -->
+        <div class="action-wrapper">
+          <button type="submit" id="submit-button" class="btn-primary">
+            감정 분석하기
+          </button>
+        </div>
+      </form>
+
+      <!-- 분석 진행 중 로딩 인디케이터 -->
+      <div id="loading-indicator" class="loading-state" role="status" aria-live="polite" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="loading-text">텍스트의 감성을 심층 분석하고 있습니다...</p>
+      </div>
+
+      <!-- API 및 네트워크 오류 표시 영역 -->
+      <div id="api-error" class="error-card" role="alert" aria-live="assertive" hidden></div>
+
+      <!-- 분석 결과 표시 영역 -->
+      <section id="result-section" class="result-card" aria-live="polite" hidden>
+        <div class="result-header">
+          <span class="result-badge">분석 결과</span>
+          <span id="save-status" class="save-status"></span>
+        </div>
+
+        <div class="result-main">
+          <div class="result-sentiment-wrapper">
+            <span class="label-caption">판단된 감성</span>
+            <div id="sentiment-label" class="sentiment-value"></div>
+          </div>
+          <div class="result-confidence-wrapper">
+            <span class="label-caption">모델 신뢰도 (참고용)</span>
+            <div id="confidence-value" class="confidence-value"></div>
+          </div>
+        </div>
+
+        <div class="result-reason-wrapper">
+          <span class="label-caption">분석 이유</span>
+          <p id="reason-text" class="reason-value"></p>
+        </div>
+
+        <div class="result-disclaimer">
+          본 결과는 AI 모델이 입력된 문장의 어조를 바탕으로 도출한 참고용 분석이며, 전문 심리 상담이나 진단이 아닙니다.
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- 하단 푸터 영역 -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 mood / words. All rights reserved.</p>
+      <p class="footer-note">Powered by OpenAI & Supabase</p>
+    </div>
+  </footer>
+
+  <!-- 바닐라 자바스크립트 모듈 로드 -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
+

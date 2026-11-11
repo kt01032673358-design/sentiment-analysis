@@ -4,6 +4,7 @@
   "description": "텍스트 감성 분석 웹 서비스 (Vanilla JS, Node.js Vercel Function, OpenAI, Supabase)",
   "type": "module",
   "scripts": {
+    "build": "echo 'No build step required'",
     "dev": "node dev-server.js",
     "start": "node dev-server.js"
   },
